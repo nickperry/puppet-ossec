@@ -27,6 +27,10 @@ class ossec::common {
       }
     }
     /(CentOS|Redhat|RedHatEnterpriseServer)/ : {
+      # Set up Atomic rpm repo
+      class { '::atomic':
+        includepkgs => 'ossec-hids*',
+      }
       $hidsagentservice='ossec-hids'
       $hidsagentpackage='ossec-hids-client'
       $hidsserverservice='ossec-hids'

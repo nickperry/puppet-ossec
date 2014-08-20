@@ -44,33 +44,12 @@ class ossec::client (
       }
     }
     /(CentOS|RedHat)/ : {
-      file { "/opt/rpm/ossec-hids-2.6.0-5.${ossec::common::redhatversion}.${architecture}.rpm":
-        owner   => root,
-        group   => root,
-        mode    => 644,
-        ensure  => present,
-        source => "puppet:///modules/ossec/ossec-hids-2.6.0-5.${ossec::common::redhatversion}.${architecture}.rpm",
-        require => [File["/opt/rpm"],Package['inotify-tools']]
-      }
       package { "ossec-hids":
-        provider => rpm,
         ensure => installed,
-        source => "/opt/rpm/ossec-hids-2.6.0-5.${ossec::common::redhatversion}.${architecture}.rpm",
-        require => File["/opt/rpm/ossec-hids-2.6.0-5.${ossec::common::redhatversion}.${architecture}.rpm"]
-      }
-      file { "/opt/rpm/ossec-hids-client-2.6.0-5.${ossec::common::redhatversion}.${architecture}.rpm":
-        owner   => root,
-        group   => root,
-        mode    => 644,
-        ensure  => present,
-        source => "puppet:///modules/ossec/ossec-hids-client-2.6.0-5.${ossec::common::redhatversion}.${architecture}.rpm",
-        require => File["/opt/rpm"]
       }
       package { $ossec::common::hidsagentpackage:
-        provider => rpm,
         ensure => installed,
-        source => "/opt/rpm/ossec-hids-client-2.6.0-5.${ossec::common::redhatversion}.${architecture}.rpm",
-        require => [File["/opt/rpm/ossec-hids-client-2.6.0-5.${ossec::common::redhatversion}.${architecture}.rpm"],Package['ossec-hids']]
+        require => Package['ossec-hids'],
       }
     }
     default: { fail("OS family not supported") }

@@ -15,6 +15,10 @@
     {
       "name": "puppetlabs-concat",
       "version_range": ">= 1.0.0"
+    },
+    {
+      "name": "andyshinn-atomic",
+      "version_range": ">= 0.1.3",
     }
   ]
 }
