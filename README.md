@@ -108,6 +108,10 @@ This module was forked from `nzin/puppet-ossec` so I could package it for Puppet
 an [outstanding issue](https://github.com/nzin/puppet-ossec/issues/3) on `nzin/puppet-ossec` to
 package it for the Forge. If this is implemented then I will tear down this fork.
 
+## Todo
+
+ * Tidy up formatting in this file
+ * Debian/Ubuntu support to use AlienVault repo rather than locally-packaged .debs
 
 ## Release Notes
 
