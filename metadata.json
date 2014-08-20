@@ -1,0 +1,21 @@
+{
+  "name": "jgazeley/ossec",
+  "version": "1.0.0",
+  "author": "jgazeley",
+  "summary": "Install and configure OSSEC-HIDS client and server",
+  "license": "GPL 2.0",
+  "source": "https://github.com/djjudas21/puppet-ossec",
+  "project_page": "https://github.com/djjudas21/puppet-ossec",
+  "issues_url": "https://github.com/djjudas21/puppet-ossec/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_range": ">= 1.0.0"
+    }
+    {
+      "name": "puppetlabs-concat",
+      "version_range": ">= 1.0.0"
+    }
+  ]
+}
+
