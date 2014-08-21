@@ -1,11 +1,11 @@
 <ossec_config>
   <global>
     <email_notification>yes</email_notification>
-	<email_to><%= ossec_emailto %></email_to>
-	<smtp_server><%= mailserver_ip %></smtp_server>
-	<email_from><%= ossec_emailfrom %></email_from>
-	<stats><%= ossec_global_stat_level %></stats>
-	<host_information><%= ossec_global_host_information_level %></host_information>
+	<email_to><%= @ossec_emailto %></email_to>
+	<smtp_server><%= @mailserver_ip %></smtp_server>
+	<email_from><%= @ossec_emailfrom %></email_from>
+	<stats><%= @ossec_global_stat_level %></stats>
+	<host_information><%= @ossec_global_host_information_level %></host_information>
   </global>
 
   <rules>
@@ -106,7 +106,7 @@
     <ignore>C:\WINDOWS/system32/spool</ignore>
     <ignore>C:\WINDOWS/system32/CatRoot</ignore>
 
-<% ossec_ignorepaths.each do |path| -%>	<ignore><%= path %></ignore>
+<% ossec_ignorepaths.each do |path| -%>	<ignore><%= @path %></ignore>
 <% end %>
   </syscheck>
 
@@ -130,7 +130,7 @@
 
   <alerts>
     <log_alert_level>1</log_alert_level>
-	<email_alert_level><%= ossec_email_alert_level %></email_alert_level>
+	<email_alert_level><%= @ossec_email_alert_level %></email_alert_level>
   </alerts>
   <!-- Files to monitor (localfiles) -->
 
