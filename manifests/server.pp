@@ -74,7 +74,7 @@ class ossec::server (
   concat::fragment { 'var_ossec_etc_client.keys_end' :
     target  => '/var/ossec/etc/client.keys',
     order   => 99,
-    content => '\n',
+    content => "\n",
     notify  => Service[$ossec::common::hidsserverservice]
   }
   Ossec::AgentKey<<| |>>
