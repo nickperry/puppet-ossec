@@ -8,7 +8,8 @@ class ossec::client (
   case $::lsbdistid {
     /(Ubuntu|ubuntu|Debian|debian)/ : {
 	    package { $ossec::common::hidsagentpackage:
-        ensure => installed,
+        ensure  => installed,
+        require => Apt::Ppa['ppa:nicolas-zin/ossec-ubuntu'],
 	    }
     }
     /(CentOS|RedHat)/ : {
@@ -63,14 +64,12 @@ class ossec::client (
   ossec::agentKey{ "ossec_agent_${::fqdn}_client":
     agent_id         => $::uniqueid,
     agent_name       => $::fqdn,
-    agent_ip_address => $::ipaddress
-    require          => Package['$ossec::common::hidsagentpackage'],
+    agent_ip_address => $::ipaddress,
   }
   @@ossec::agentKey{ "ossec_agent_${::fqdn}_server":
     agent_id         => $::uniqueid,
     agent_name       => $::fqdn,
     agent_ip_address => $::ipaddress
-    require          => Package['$ossec::common::hidsagentpackage'],
   }
 }
 

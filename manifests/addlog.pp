@@ -3,10 +3,10 @@ define ossec::addlog(
   $logfile
 ) {
   concat::fragment { "ossec.conf_20" :
-    target => '/var/ossec/etc/ossec.conf',
+    target  => '/var/ossec/etc/ossec.conf',
     content => template("ossec/20_ossecLogfile.conf.erb"),
-    order => 10,
-    notify => Service[$ossec::common::hidsserverservice]
+    order   => 10,
+    notify  => Service[$ossec::common::hidsserverservice]
   }
 
 }

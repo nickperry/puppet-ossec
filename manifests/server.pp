@@ -1,17 +1,17 @@
 class ossec::server (
   $mailserver_ip,
-  $ossec_emailfrom = "ossec@${domain}",
+  $ossec_emailfrom                     = "ossec@${domain}",
   $ossec_emailto,
-  $ossec_active_response = true,
+  $ossec_active_response               = true,
   $ossec_global_host_information_level = 8,
-  $ossec_global_stat_level=8,
-  $ossec_email_alert_level=7,
-  $ossec_ignorepaths = []
+  $ossec_global_stat_level             = 8,
+  $ossec_email_alert_level             = 7,
+  $ossec_ignorepaths                   = []
 ) {
   include ossec::common
 	
   # install package
-  case $lsbdistid {
+  case $::lsbdistid {
     /(Ubuntu|ubuntu|Debian|debian)/ : {
       package { $ossec::common::hidsserverpackage:
         ensure  => installed,
