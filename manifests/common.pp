@@ -19,9 +19,8 @@ class ossec::common {
         }
       }
       case "${lsbdistcodename}" {
-        lucid: { 
-          # install package
-#	  include apt::ppa::ossec
+        /(lucid|precise|trusty)/: { 
+          apt::ppa { 'ppa:nicolas-zin/ossec-ubuntu': }
         }
         default : { fail("This ossec module has not been tested on your distribution (or 'redhat-lsb' package not installed)") }
       }
