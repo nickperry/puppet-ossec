@@ -1,6 +1,6 @@
 define ossec::email_alert(
   $alert_email,
-  $alert_group =false
+  $alert_group = false
 ) {
   concat::fragment { $name:
     target  => '/var/ossec/etc/ossec.conf',
