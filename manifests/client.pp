@@ -64,11 +64,13 @@ class ossec::client (
     agent_id         => $::uniqueid,
     agent_name       => $::fqdn,
     agent_ip_address => $::ipaddress
+    require          => Package['$ossec::common::hidsagentpackage'],
   }
   @@ossec::agentKey{ "ossec_agent_${::fqdn}_server":
     agent_id         => $::uniqueid,
     agent_name       => $::fqdn,
     agent_ip_address => $::ipaddress
+    require          => Package['$ossec::common::hidsagentpackage'],
   }
 }
 
