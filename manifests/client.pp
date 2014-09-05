@@ -61,12 +61,12 @@ class ossec::client(
     notify  => Service[$ossec::common::hidsagentservice],
     require => Package[$ossec::common::hidsagentpackage]
   }
-  ossec::agentKey{ "ossec_agent_${::fqdn}_client":
+  ossec::agentkey{ "ossec_agent_${::fqdn}_client":
     agent_id         => $::uniqueid,
     agent_name       => $::fqdn,
     agent_ip_address => $::ipaddress,
   }
-  @@ossec::agentKey{ "ossec_agent_${::fqdn}_server":
+  @@ossec::agentkey{ "ossec_agent_${::fqdn}_server":
     agent_id         => $::uniqueid,
     agent_name       => $::fqdn,
     agent_ip_address => $::ipaddress

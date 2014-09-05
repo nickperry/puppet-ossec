@@ -77,6 +77,6 @@ class ossec::server (
     content => "\n",
     notify  => Service[$ossec::common::hidsserverservice]
   }
-  Ossec::AgentKey<<| |>>
+  Ossec::Agentkey<<| |>>
 
 }

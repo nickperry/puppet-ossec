@@ -1,13 +1,13 @@
 #
 # utility function to fill up /var/ossec/etc/client.keys
 #
-define ossec::agentKey(
+define ossec::agentkey(
   $agent_id,
   $agent_name,
   $agent_ip_address,
   $agent_seed = 'xaeS7ahf',
 ) {
-  if ! $agent_id { fail("ossec::agentKey: ${agentId} is missing")}
+  if ! $agent_id { fail("ossec::agentkey: ${agentId} is missing")}
 
   $agentKey1 = ossec_md5("${agent_id} ${agent_seed}")
   $agentKey2 = ossec_md5("${agent_name} ${agent_ip_address} ${agent_seed}")
