@@ -1,110 +1,76 @@
 #
-class ossec::client (
-  $ossec_active_response=true,
+class ossec::client(
+  $ossec_active_response = true,
   $ossec_server_ip
 ) {
   include ossec::common
 
-  case $lsbdistid {
-    /(Ubuntu|ubuntu|Debian|debian)/ : {
-      case $architecture {
-        "amd64","x86_64": {
-	  file { "/opt/debs/ossec-hids-agent_2.6.0-ubuntu1_amd64.deb":
-	    owner   => root,
-            group   => root,
-            mode    => 644,
-            ensure  => present,
-            source => "puppet:///modules/ossec/ossec-hids-agent_2.6.0-ubuntu1_amd64.deb",
-            require => File["/opt/debs"]
-	  }
-	  package { "ossec-hids-agent":
-            provider => dpkg,
-            ensure => installed,
-            source => "/opt/debs/ossec-hids-agent_2.6.0-ubuntu1_amd64.deb",
-            require => File["/opt/debs/ossec-hids-agent_2.6.0-ubuntu1_amd64.deb"]
-	  }
-        }
-        "i386": {
-	  file { "/opt/debs/ossec-hids-agent_2.6.0-ubuntu1_i386.deb":
-	    owner   => root,
-            group   => root,
-            mode    => 644,
-            ensure  => present,
-            source => "puppet:///modules/ossec/ossec-hids-agent_2.6.0-ubuntu1_i386.deb",
-            require => File["/opt/debs"]
-	  }
-	  package { "ossec-hids-agent":
-            provider => dpkg,
-            ensure => installed,
-            source => "/opt/debs/ossec-hids-agent_2.6.0-ubuntu1_i386.deb",
-            require => File["/opt/debs/ossec-hids-agent_2.6.0-ubuntu1_i386.deb"]
-	  }
-        }
-        default: { fail("architecture not supported") }
+  case $::osfamily {
+    'Debian' : {
+      package { $ossec::common::hidsagentpackage:
+        ensure  => installed,
+        require => Apt::Ppa['ppa:nicolas-zin/ossec-ubuntu'],
       }
     }
-    /(CentOS|RedHat)/ : {
-      package { "ossec-hids":
+    'RedHat' : {
+      package { 'ossec-hids':
         ensure => installed,
       }
       package { $ossec::common::hidsagentpackage:
-        ensure => installed,
+        ensure  => installed,
         require => Package['ossec-hids'],
       }
     }
-    default: { fail("OS family not supported") }
+    default: { fail('OS family not supported') }
   }
 
   service { $ossec::common::hidsagentservice:
-    ensure => running,
-    enable => true,
+    ensure    => running,
+    enable    => true,
     hasstatus => true,
-    pattern => $ossec::common::hidsagentservice,
-    require => Package[$ossec::common::hidsagentpackage],
+    pattern   => $ossec::common::hidsagentservice,
+    require   => Package[$ossec::common::hidsagentpackage],
   }
 
   include concat::setup
   concat { '/var/ossec/etc/ossec.conf':
-    owner => root,
-    group => ossec,
-    mode => 0440,
+    owner   => 'root',
+    group   => 'ossec',
+    mode    => 0440,
     require => Package[$ossec::common::hidsagentpackage],
-    notify => Service[$ossec::common::hidsagentservice]
+    notify  => Service[$ossec::common::hidsagentservice]
   }
-
-  concat::fragment { "ossec.conf_10" :
-    target => '/var/ossec/etc/ossec.conf',
-    content => template("ossec/10_ossec_agent.conf.erb"),
-    order => 10,
-    notify => Service[$ossec::common::hidsagentservice]
+  concat::fragment { 'ossec.conf_10' :
+    target  => '/var/ossec/etc/ossec.conf',
+    content => template('ossec/10_ossec_agent.conf.erb'),
+    order   => 10,
+    notify  => Service[$ossec::common::hidsagentservice]
   }
-  concat::fragment { "ossec.conf_99" :
-    target => '/var/ossec/etc/ossec.conf',
-    content => template("ossec/99_ossec_agent.conf.erb"),
-    order => 99,
-    notify => Service[$ossec::common::hidsagentservice]
+  concat::fragment { 'ossec.conf_99' :
+    target  => '/var/ossec/etc/ossec.conf',
+    content => template('ossec/99_ossec_agent.conf.erb'),
+    order   => 99,
+    notify  => Service[$ossec::common::hidsagentservice]
   }
-
-  # get log from rsyslog for apache
-#	file {"/etc/rsyslog.d/30-ossec_agent.conf":
-#		ensure  => file,
-#		group   => root,
-#		owner   => root,
-#		source  => "puppet:///modules/ossec/30-ossec_agent.conf",
-#		notify  => Service['rsyslog'],
-#		require => Package['rsyslog'],
-#	}
 
   include concat::setup
-  concat { "/var/ossec/etc/client.keys":
-    owner   => "root",
-    group   => "ossec",
-    mode    => "640",
+  concat { '/var/ossec/etc/client.keys':
+    owner   => 'root',
+    group   => 'ossec',
+    mode    => 0640,
     notify  => Service[$ossec::common::hidsagentservice],
     require => Package[$ossec::common::hidsagentpackage]
   }
-  ossec::agentKey{ "ossec_agent_${fqdn}_client": agent_id=>$uniqueid, agent_name => $fqdn, agent_ip_address => $ipaddress}
-  @@ossec::agentKey{ "ossec_agent_${fqdn}_server": agent_id=>$uniqueid, agent_name => $fqdn, agent_ip_address => $ipaddress}
+  ossec::agentKey{ "ossec_agent_${::fqdn}_client":
+    agent_id         => $::uniqueid,
+    agent_name       => $::fqdn,
+    agent_ip_address => $::ipaddress,
+  }
+  @@ossec::agentKey{ "ossec_agent_${::fqdn}_server":
+    agent_id         => $::uniqueid,
+    agent_name       => $::fqdn,
+    agent_ip_address => $::ipaddress
+  }
 }
 
 
