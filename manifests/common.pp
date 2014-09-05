@@ -12,7 +12,7 @@ class ossec::common {
         /(lucid|precise|trusty)/: {
           apt::ppa { 'ppa:nicolas-zin/ossec-ubuntu': }
         }
-        default : { fail("This ossec module has not been tested on your distribution (or 'redhat-lsb' package not installed)") }
+        default : { fail('This ossec module has not been tested on your distribution (or lsb package not installed)') }
       }
     }
     'Redhat' : {
