@@ -1,6 +1,6 @@
 {
   "name": "jgazeley/ossec",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "jgazeley",
   "summary": "Install and configure OSSEC-HIDS client and server",
   "license": "GPL 2.0",
