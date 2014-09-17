@@ -27,7 +27,7 @@ The server is configured by installing the `ossec::server` class, and using opti
 
 ### SERVER
 
-```
+```puppet
   node "mynode" inherits ... {
     class { 'ossec::server':
       mailserver_ip=>"mailserver.mycompany.com",
@@ -49,7 +49,7 @@ The server is configured by installing the `ossec::server` class, and using opti
 ```
 
 ### CLIENT
-```
+```puppet
   node "aclientnode" inherits ... {
     class { "ossec::client":
       ossec_server_ip => "10.10.130.66"
