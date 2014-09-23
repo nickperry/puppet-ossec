@@ -22,11 +22,9 @@ class ossec::server (
       package { 'mysql': ensure => present }
       package { 'ossec-hids':
         ensure   => installed,
-        provider => rpm,
       }
       package { $ossec::common::hidsserverpackage:
         ensure   => installed,
-        provider => rpm,
         require  => Package['mysql'],
       }
     }
