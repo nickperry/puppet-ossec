@@ -33,7 +33,6 @@ class ossec::client(
     require   => Package[$ossec::common::hidsagentpackage],
   }
 
-  include concat::setup
   concat { '/var/ossec/etc/ossec.conf':
     owner   => 'root',
     group   => 'ossec',
@@ -54,7 +53,6 @@ class ossec::client(
     notify  => Service[$ossec::common::hidsagentservice]
   }
 
-  include concat::setup
   concat { '/var/ossec/etc/client.keys':
     owner   => 'root',
     group   => 'ossec',

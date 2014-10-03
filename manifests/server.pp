@@ -41,7 +41,6 @@ class ossec::server (
   }
 
   # configure ossec
-  include concat::setup
   concat { '/var/ossec/etc/ossec.conf':
     owner   => 'root',
     group   => 'ossec',
