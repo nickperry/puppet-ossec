@@ -1,5 +1,4 @@
-#
-#
+# Package installation
 class ossec::common {
   case $::osfamily {
     'Debian' : {

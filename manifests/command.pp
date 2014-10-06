@@ -1,3 +1,4 @@
+# Define an ossec command
 define ossec::command(
   $command_name,
   $command_executable,

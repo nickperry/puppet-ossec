@@ -1,3 +1,4 @@
+# Main ossec server config
 class ossec::server (
   $mailserver_ip,
   $ossec_emailto,
@@ -24,8 +25,8 @@ class ossec::server (
         ensure   => installed,
       }
       package { $ossec::common::hidsserverpackage:
-        ensure   => installed,
-        require  => Package['mysql'],
+        ensure  => installed,
+        require => Package['mysql'],
       }
     }
     default: { fail('OS family not supported') }

@@ -1,3 +1,4 @@
+# Define lightclient
 class ossec::lightclient {
   @@concat::fragment { "ossec.conf_50_${::fqdn}" :
     target  => '/var/ossec/etc/ossec.conf',
