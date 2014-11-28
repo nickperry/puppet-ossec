@@ -1,0 +1,5 @@
+2014-11-28 Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk> - 1.3.0
+===========================================================
+
+ Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
+  * Add support for Debian "Jessie" (thanks to @ivan7farre)
