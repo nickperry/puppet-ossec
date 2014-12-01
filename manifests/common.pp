@@ -31,7 +31,7 @@ class ossec::common {
             command     => '/usr/bin/apt-get update',
             refreshonly => true
           }
-        default : { fail('This ossec module has not been tested on your distribution (or lsb package not installed)') }
+        default: { fail('This ossec module has not been tested on your distribution (or lsb package not installed)') }
       }
     }
     'Redhat' : {
@@ -51,7 +51,7 @@ class ossec::common {
       }
       package { 'inotify-tools': ensure => present }
     }
-    default : { fail('This ossec module has not been tested on your distribution') }
+    default: { fail('This ossec module has not been tested on your distribution') }
   }
 }
 
