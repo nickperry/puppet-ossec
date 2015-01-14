@@ -27,7 +27,7 @@ class ossec::common {
             key_source  => 'http://ossec.alienvault.com/repos/apt/conf/ossec-key.gpg.key',
           }
           ~>
-          exec { "update-apt-alienvault-repo":
+          exec { 'update-apt-alienvault-repo':
             command     => '/usr/bin/apt-get update',
             refreshonly => true
           }
