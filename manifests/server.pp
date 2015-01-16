@@ -45,7 +45,7 @@ class ossec::server (
   concat { '/var/ossec/etc/ossec.conf':
     owner   => 'root',
     group   => 'ossec',
-    mode    => 0440,
+    mode    => '0440',
     require => Package[$ossec::common::hidsserverpackage],
     notify  => Service[$ossec::common::hidsserverservice]
   }
@@ -65,7 +65,7 @@ class ossec::server (
   concat { '/var/ossec/etc/client.keys':
     owner   => 'root',
     group   => 'ossec',
-    mode    => 0640,
+    mode    => '0640',
     notify  => Service[$ossec::common::hidsserverservice],
     require => Package[$ossec::common::hidsserverpackage],
   }
