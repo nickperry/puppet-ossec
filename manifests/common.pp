@@ -2,7 +2,7 @@
 class ossec::common {
   case $::osfamily {
     'Debian' : {
-      $hidsagentservice  = 'ossec-hids-agent'
+      $hidsagentservice  = 'ossec'
       $hidsagentpackage  = 'ossec-hids-agent'
 
       case $::lsbdistcodename {
