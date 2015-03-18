@@ -9,7 +9,7 @@ class ossec::client(
     'Debian' : {
       package { $ossec::common::hidsagentpackage:
         ensure  => installed,
-        require => Apt::Ppa['ppa:nicolas-zin/ossec-ubuntu'],
+        require => Apt::Source["alienvault"],
       }
     }
     'RedHat' : {
