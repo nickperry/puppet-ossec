@@ -40,6 +40,10 @@ class ossec::common {
       class { '::atomic':
         includepkgs => 'ossec-hids*',
       }
+
+      # Set up EPEL repo
+      include epel
+
       $hidsagentservice  = 'ossec-hids'
       $hidsagentpackage  = 'ossec-hids-client'
       $hidsserverservice = 'ossec-hids'
@@ -50,7 +54,10 @@ class ossec::common {
         /^7/:    {$redhatversion='el7'}
         default: { }
       }
-      package { 'inotify-tools': ensure => present }
+      package { 'inotify-tools':
+        ensure  => present,
+        require => Class['epel'],
+      }
     }
     default: { fail('This ossec module has not been tested on your distribution') }
   }
