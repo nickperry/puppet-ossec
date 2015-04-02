@@ -1,9 +1,9 @@
 {
   "name": "jgazeley/ossec",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "author": "jgazeley",
   "summary": "Install and configure OSSEC-HIDS client and server",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/djjudas21/puppet-ossec",
   "project_page": "https://github.com/djjudas21/puppet-ossec",
   "issues_url": "https://github.com/djjudas21/puppet-ossec/issues",

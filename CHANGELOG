@@ -9,3 +9,9 @@
 
  Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
   * Fix compatibility issue with PuppetServer (thanks to @d9705996)
+
+2015-03-02 Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk> - 1.4.0
+===========================================================
+
+ Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
+  * Fix dependency problem by providing EPEL on RHEL (thanks to @otteydw for reporting)

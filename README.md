@@ -13,13 +13,12 @@
 ## Overview
 
 This module installs and configures OSSEC-HIDS client and server.
-It requires `puppetlabs/concat`.
 
 ## Module Description
 
 The server is configured by installing the `ossec::server` class, and using optionally
 
- * `ossec::command`        : to define active/response command (like firewall-drop.sh)
+ * `ossec::command`        : to define active/response command (like `firewall-drop.sh`)
  * `ossec::activeresponse` : to link rules to active/response command
  * `ossec:: email_alert`   : to receive to other email adress specific group of rules information
 
@@ -29,8 +28,8 @@ The server is configured by installing the `ossec::server` class, and using opti
 
 ```puppet
 class { 'ossec::server':
-  mailserver_ip=>"mailserver.mycompany.com",
-  ossec_emailto=>"nicolas.zin@mycompany.com",
+  mailserver_ip => 'mailserver.mycompany.com',
+  ossec_emailto => 'nicolas.zin@mycompany.com',
 }
 
 ossec::command { 'firewallblock':
@@ -96,7 +95,12 @@ About active-response mechanism, check the documentation (and extends the functi
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+On RedHat-like systems, this module depends on the [Atomic repo](https://www6.atomicorp.com/channels/atomic/)
+to provide the OSSEC packages, and on the [EPEL repo](https://fedoraproject.org/wiki/EPEL) to provide
+a dependency, `inotify-tools`.
+
+On Debian-like systems, this module depends on the [Alienvault repo](http://ossec.alienvault.com/repos/apt/debian/)
+to provide the OSSEC packages.
 
 ## Development
 
@@ -104,11 +108,7 @@ This module was forked from `nzin/puppet-ossec` so I could package it for Puppet
 original author is [not willing to maintain the code](https://github.com/nzin/puppet-ossec/issues/3)
 so please contribute to this fork.
 
-## Todo
-
 ## Release Notes
 
-Copyright (C) 2011 Savoir-faire Linux
 Author Nicolas Zin
 Maintained by Jonathan Gazeley
-Licence: GPL v2
