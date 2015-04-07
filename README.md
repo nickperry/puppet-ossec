@@ -21,6 +21,7 @@ The server is configured by installing the `ossec::server` class, and using opti
  * `ossec::command`        : to define active/response command (like `firewall-drop.sh`)
  * `ossec::activeresponse` : to link rules to active/response command
  * `ossec:: email_alert`   : to receive to other email adress specific group of rules information
+ * `ossec::addlog`         : to define additional log files to monitor
 
 ## Usage
 
@@ -42,6 +43,11 @@ ossec::activeresponse { 'blockWebattack':
   command_name => 'firewall-drop',
   ar_level     => 9,
   ar_rules_id  => [31153,31151]
+}
+
+ossec::addlog { 'monitorLogFile':
+  logfile => '/var/log/secure',
+  logtype => 'syslog'
 }
 ```
 
@@ -86,6 +92,11 @@ About active-response mechanism, check the documentation (and extends the functi
  * `$ar_level` (default: 7) between 0 and 16
  * `$ar_rules_id` (default: `[]`) list of rules id
  * `$ar_timeout` (default: 300) usually active reponse blocks for a certain amount of time.
+
+#### function ossec::addlog
+ * `$log_name`,
+ * `$logfile` /path/to/log/file
+ * `$logtype` (default: syslog) The ossec log_format of the file.  Valid values can be found in the [documentation](https://ossec-docs.readthedocs.org/en/latest/syntax/head_ossec_config.localfile.html#location).
 
 
 
