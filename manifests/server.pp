@@ -67,7 +67,7 @@ class ossec::server (
   service { $ossec::common::hidsserverservice:
     ensure    => running,
     enable    => true,
-    hasstatus => true,
+    hasstatus => $ossec::common::servicehasstatus,
     pattern   => $ossec::common::hidsserverservice,
     require   => Package[$ossec::common::hidsserverpackage],
   }

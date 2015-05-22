@@ -28,7 +28,7 @@ class ossec::client(
   service { $ossec::common::hidsagentservice:
     ensure    => running,
     enable    => true,
-    hasstatus => true,
+    hasstatus => $ossec::common::servicehasstatus,
     pattern   => $ossec::common::hidsagentservice,
     require   => Package[$ossec::common::hidsagentpackage],
   }

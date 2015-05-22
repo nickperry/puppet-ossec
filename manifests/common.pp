@@ -4,6 +4,7 @@ class ossec::common {
     'Debian' : {
       $hidsagentservice  = 'ossec'
       $hidsagentpackage  = 'ossec-hids-agent'
+      $servicehasstatus  = false
 
       case $::lsbdistcodename {
         /(lucid|precise|trusty)/: {
@@ -48,6 +49,7 @@ class ossec::common {
       $hidsagentpackage  = 'ossec-hids-client'
       $hidsserverservice = 'ossec-hids'
       $hidsserverpackage = 'ossec-hids-server'
+      $servicehasstatus  = true
       case $::operatingsystemrelease {
         /^5/:    {$redhatversion='el5'}
         /^6/:    {$redhatversion='el6'}
