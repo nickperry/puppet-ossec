@@ -21,3 +21,9 @@
 
  Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
   * Email notification is no longer hard-coded in ossec.conf (thanks to @earsdown)
+
+2015-06-10 Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk> - 1.4.2
+===========================================================
+
+ Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
+  * Fix regression that breaks behaviour on CentOS 6 and lower
