@@ -34,7 +34,7 @@ class ossec::server (
                 require => Package['mariadb'],
               }
             }
-            'default' : {
+            default: {
               package { 'mysql': ensure => present }
               package { 'ossec-hids':
                 ensure   => installed,
