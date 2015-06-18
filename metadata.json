@@ -1,5 +1,5 @@
 {
-  "name": "jgazeley/ossec",
+  "name": "jgazeley-ossec",
   "version": "1.5.1",
   "author": "jgazeley",
   "summary": "Install and configure OSSEC-HIDS client and server",
