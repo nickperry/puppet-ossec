@@ -71,6 +71,16 @@ class ossec::client(
     agent_name       => $::fqdn,
     agent_ip_address => $::ipaddress
   }
+
+  # Set log permissions properly to fix
+  # https://github.com/djjudas21/puppet-ossec/issues/20
+  file { '/var/ossec/logs':
+    ensure  => directory,
+    require => Package[$ossec::common::hidsagentpackage],
+    owner   => 'ossec',
+    group   => 'ossec',
+    mode    => '0550',
+  }
 }
 
 
