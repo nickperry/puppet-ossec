@@ -79,7 +79,7 @@ class ossec::client(
     require => Package[$ossec::common::hidsagentpackage],
     owner   => 'ossec',
     group   => 'ossec',
-    mode    => '0550',
+    mode    => '0750',
   }
 }
 
