@@ -40,3 +40,9 @@
  Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
   * Fix permissions on log files so logwatch on EL7 doesn't complain
   * Key concat::fragment for agentkeys on $agent_name to avoid duplicated resources
+
+2015-07-06 Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk> - 1.5.4
+===========================================================
+
+ Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
+  * Fix regression in log file permissions (thanks to @paulseward)
