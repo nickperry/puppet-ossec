@@ -3,6 +3,7 @@ class ossec::client(
   $ossec_active_response   = true,
   $ossec_server_ip,
   $ossec_emailnotification = "yes",
+  $selinux = false,
 ) {
   include ossec::common
 
@@ -81,6 +82,12 @@ class ossec::client(
     group   => 'ossec',
     mode    => '0750',
   }
+
+  # SELinux
+  if ($::osfamily == 'RedHat' and $selinux == true) {
+    selinux::module { 'ossec-logrotate':
+      ensure => 'present',
+      source => 'puppet:///modules/ossec/ossec-logrotate.te',
+    }
+  }
 }
-
-

@@ -39,7 +39,10 @@
     {
       "name": "stahnma/epel",
       "version_range": ">= 1.0.0"
+    },
+    {
+      "name": "jfryman/selinux",
+      "version_range": ">= 0.2.3"
     }
   ]
 }
-
