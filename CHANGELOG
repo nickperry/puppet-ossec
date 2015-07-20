@@ -46,3 +46,9 @@
 
  Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
   * Fix regression in log file permissions (thanks to @paulseward)
+
+2015-07-20 Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk> - 1.6.0
+===========================================================
+
+ Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
+  * Enable SELinux support
