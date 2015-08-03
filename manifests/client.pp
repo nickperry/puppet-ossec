@@ -80,7 +80,7 @@ class ossec::client(
     require => Package[$ossec::common::hidsagentpackage],
     owner   => 'ossec',
     group   => 'ossec',
-    mode    => '0750',
+    mode    => '0755',
   }
 
   # SELinux
