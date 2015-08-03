@@ -52,3 +52,10 @@
 
  Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
   * Enable SELinux support
+
+2015-08-03 Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk> - 1.6.2
+===========================================================
+
+ Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
+  * Fix log directory permissions
+
