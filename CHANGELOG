@@ -59,3 +59,8 @@
  Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
   * Fix log directory permissions
 
+2015-08-07 Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk> - 1.7.0
+===========================================================
+
+ Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
+  * Use puppetlabs/mysql to manage MySQL client
