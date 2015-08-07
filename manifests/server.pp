@@ -11,6 +11,7 @@ class ossec::server (
   $ossec_emailnotification             = 'yes',
 ) {
   include ossec::common
+  include mysql::client
 
   # install package
   case $::osfamily {
@@ -35,13 +36,12 @@ class ossec::server (
               }
             }
             default: {
-              package { 'mysql': ensure => present }
               package { 'ossec-hids':
                 ensure   => installed,
               }
               package { $ossec::common::hidsserverpackage:
                 ensure  => installed,
-                require => Package['mysql'],
+                require => Class['mysql::client'],
               }
             }
           }
@@ -49,15 +49,14 @@ class ossec::server (
         'RedHat' : {
           package { $ossec::common::hidsserverpackage:
             ensure  => installed,
-            require => Package['mysql'],
+            require => Class['mysql::client'],
           }
-          package { 'mysql': ensure => present }
           package { 'ossec-hids':
             ensure   => installed,
           }
           package { $ossec::common::hidsserverpackage:
             ensure  => installed,
-            require => Package['mysql'],
+            require => Class['mysql::client'],
           }
         }
       }
