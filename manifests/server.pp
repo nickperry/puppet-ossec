@@ -73,7 +73,7 @@ class ossec::server (
   }
 
   # configure ossec
-  concat { '/var/ossec/etc/ossec.conf':
+  concat { '/opt/ossec/etc/ossec.conf':
     owner   => 'root',
     group   => 'ossec',
     mode    => '0440',
@@ -81,19 +81,19 @@ class ossec::server (
     notify  => Service[$ossec::common::hidsserverservice]
   }
   concat::fragment { 'ossec.conf_10' :
-    target  => '/var/ossec/etc/ossec.conf',
+    target  => '/opt/ossec/etc/ossec.conf',
     content => template('ossec/10_ossec.conf.erb'),
     order   => 10,
     notify  => Service[$ossec::common::hidsserverservice]
   }
   concat::fragment { 'ossec.conf_90' :
-    target  => '/var/ossec/etc/ossec.conf',
+    target  => '/opt/ossec/etc/ossec.conf',
     content => template('ossec/90_ossec.conf.erb'),
     order   => 90,
     notify  => Service[$ossec::common::hidsserverservice]
   }
 
-  concat { '/var/ossec/etc/client.keys':
+  concat { '/opt/ossec/etc/client.keys':
     owner   => 'root',
     group   => 'ossec',
     mode    => '0640',
@@ -101,7 +101,7 @@ class ossec::server (
     require => Package[$ossec::common::hidsserverpackage],
   }
   concat::fragment { 'var_ossec_etc_client.keys_end' :
-    target  => '/var/ossec/etc/client.keys',
+    target  => '/opt/ossec/etc/client.keys',
     order   => 99,
     content => "\n",
     notify  => Service[$ossec::common::hidsserverservice]

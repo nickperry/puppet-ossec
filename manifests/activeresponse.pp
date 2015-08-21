@@ -7,7 +7,7 @@ define ossec::activeresponse(
   $ar_timeout  = 300,
 ) {
   concat::fragment { $name:
-    target  => '/var/ossec/etc/ossec.conf',
+    target  => '/opt/ossec/etc/ossec.conf',
     order   => 55,
     content => template('ossec/activeresponse.erb')
   }
