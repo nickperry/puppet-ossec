@@ -64,3 +64,9 @@
 
  Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
   * Use puppetlabs/mysql to manage MySQL client
+
+2015-08-21 Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk> - 1.7.2
+===========================================================
+
+ Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
+  * SELinux permissions fix
