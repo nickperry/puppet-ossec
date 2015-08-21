@@ -17,7 +17,6 @@ class ossec::client(
     'RedHat' : {
       package { 'ossec-hids':
         ensure  => installed,
-        require => Yumrepo['ossec'],
       }
       package { $ossec::common::hidsagentpackage:
         ensure  => installed,
