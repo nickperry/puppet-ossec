@@ -34,7 +34,7 @@ class ossec::client(
     require   => Package[$ossec::common::hidsagentpackage],
   }
 
-  concat { '/opt/ossec/etc/ossec.conf':
+  concat { '/var/ossec/etc/ossec.conf':
     owner   => 'root',
     group   => 'ossec',
     mode    => '0440',
@@ -42,19 +42,19 @@ class ossec::client(
     notify  => Service[$ossec::common::hidsagentservice]
   }
   concat::fragment { 'ossec.conf_10' :
-    target  => '/opt/ossec/etc/ossec.conf',
+    target  => '/var/ossec/etc/ossec.conf',
     content => template('ossec/10_ossec_agent.conf.erb'),
     order   => 10,
     notify  => Service[$ossec::common::hidsagentservice]
   }
   concat::fragment { 'ossec.conf_99' :
-    target  => '/opt/ossec/etc/ossec.conf',
+    target  => '/var/ossec/etc/ossec.conf',
     content => template('ossec/99_ossec_agent.conf.erb'),
     order   => 99,
     notify  => Service[$ossec::common::hidsagentservice]
   }
 
-  concat { '/opt/ossec/etc/client.keys':
+  concat { '/var/ossec/etc/client.keys':
     owner   => 'root',
     group   => 'ossec',
     mode    => '0640',
@@ -74,7 +74,7 @@ class ossec::client(
 
   # Set log permissions properly to fix
   # https://github.com/djjudas21/puppet-ossec/issues/20
-  file { '/var/log/ossec':
+  file { '/var/ossec/logs':
     ensure  => directory,
     require => Package[$ossec::common::hidsagentpackage],
     owner   => 'ossec',

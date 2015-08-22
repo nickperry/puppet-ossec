@@ -1,4 +1,4 @@
-# utility function to fill up /opt/ossec/etc/client.keys
+# utility function to fill up /var/ossec/etc/client.keys
 define ossec::agentkey(
   $agent_id,
   $agent_name,
@@ -11,7 +11,7 @@ define ossec::agentkey(
   $agentKey2 = ossec_md5("${agent_name} ${agent_ip_address} ${agent_seed}")
 
   concat::fragment { "var_ossec_etc_client.keys_${agent_name}_part":
-    target  => '/opt/ossec/etc/client.keys',
+    target  => '/var/ossec/etc/client.keys',
     order   => $agent_id,
     content => "${agent_id} ${agent_name} ${agent_ip_address} ${agentKey1}${agentKey2}\n",
   }
