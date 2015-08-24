@@ -1,4 +1,4 @@
-module ossec-logrotate 1.1;
+module ossec-logrotate 1.2;
 
 require {
 type var_t;
