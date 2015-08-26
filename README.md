@@ -29,7 +29,7 @@ The server is configured by installing the `ossec::server` class, and using opti
 
 ```puppet
 class { 'ossec::server':
-  mailserver_ip => 'mailserver.mycompany.com',
+  mailserver_hostname => 'mailserver.mycompany.com',
   ossec_emailto => 'nicolas.zin@mycompany.com',
 }
 
@@ -54,7 +54,7 @@ ossec::addlog { 'monitorLogFile':
 ### CLIENT
 ```puppet
 class { "ossec::client":
-  ossec_server_ip => "10.10.130.66"
+  ossec_server_hostname => "10.10.130.66"
 }
 ```
 
@@ -63,7 +63,7 @@ class { "ossec::client":
 ### SERVER
 
 #### class ossec::server
- * `$mailserver_ip` smtp mail server,
+ * `$mailserver_hostname` smtp mail server,
  * `$ossec_emailfrom` (default: `ossec@${domain}`) email origin sent by ossec,
  * `$ossec_emailto` who will receive it,
  * `$ossec_active_response` (default: `true`) if active response should be configure on the server (beware to configure it on clients also),
@@ -102,7 +102,7 @@ About active-response mechanism, check the documentation (and extends the functi
 
 
 ### CLIENT
- * `$ossec_server_ip` IP of the server
+ * `$ossec_server_hostname` IP of the server
  * `$ossec_active_response` (default: true) allows active response on this host
  * `$ossec_emailnotification` (default: yes) Whether to send email notifications
  * `$selinux` (default: false) Whether to install an SELinux policy to allow rotation of OSSEC logs

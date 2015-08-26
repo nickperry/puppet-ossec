@@ -1,6 +1,6 @@
 # Main ossec server config
 class ossec::server (
-  $mailserver_ip,
+  $mailserver_hostname,
   $ossec_emailto,
   $ossec_emailfrom                     = "ossec@${::domain}",
   $ossec_active_response               = true,
