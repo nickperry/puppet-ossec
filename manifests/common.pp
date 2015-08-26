@@ -37,29 +37,6 @@ class ossec::common {
       }
     }
     'Redhat' : {
-      # Set up OSSEC rpm gpg key
-      file { 'RPM-GPG-KEY.ossec.txt':
-        path   => '/etc/pki/rpm-gpg/RPM-GPG-KEY.ossec.txt',
-        source => 'puppet:///modules/ossec/RPM-GPG-KEY.ossec.txt',
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0664',
-      }
-
-      # Set up OSSEC repo
-      yumrepo { 'ossec':
-        descr      => 'CentOS / Red Hat Enterprise Linux $releasever - ossec.net',
-        enabled    => true,
-        gpgkey     => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY.ossec.txt',
-        mirrorlist => 'http://updates.atomicorp.com/channels/mirrorlist/ossec/centos-$releasever-$basearch',
-        priority   => 1,
-        protect    => false,
-        require    => [ File['RPM-GPG-KEY.ossec.txt'], Class['epel'] ]
-      }
-
-      # Set up EPEL repo
-      include epel
-
       $hidsagentservice  = 'ossec-hids'
       $hidsagentpackage  = 'ossec-hids-client'
       $hidsserverservice = 'ossec-hids'
@@ -73,7 +50,6 @@ class ossec::common {
       }
       package { 'inotify-tools':
         ensure  => present,
-        require => Class['epel'],
       }
     }
     default: { fail('This ossec module has not been tested on your distribution') }
