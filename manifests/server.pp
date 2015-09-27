@@ -39,6 +39,7 @@ class ossec::server (
     require   => Package[$ossec::common::hidsserverpackage],
   }
 
+/*
   # configure ossec
   concat { '/var/ossec/etc/ossec.conf':
     owner   => 'root',
@@ -59,6 +60,7 @@ class ossec::server (
     order   => 90,
     notify  => Service[$ossec::common::hidsserverservice]
   }
+*/
 
   concat { '/var/ossec/etc/client.keys':
     owner   => 'root',
